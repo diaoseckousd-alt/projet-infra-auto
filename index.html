@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Infra - Projet Virtualisation</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --success: #22c55e;
+            --bg: #f8fafc;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); color: #1e293b; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        .container { max-width: 800px; width: 100%; background: white; padding: 30px; border-radius: 12px; shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); border: 1px solid #e2e8f0; }
+        h1 { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 10px; }
+        .status-badge { background: var(--success); color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        .infra-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 30px; text-align: center; }
+        .node { padding: 15px; border: 1px dashed var(--secondary); border-radius: 8px; background: #fff; }
+        .node.active { border-style: solid; border-color: var(--success); background: #f0fdf4; }
+        .arrow { font-size: 24px; align-self: center; color: var(--secondary); }
+        .footer { margin-top: 40px; font-size: 0.9rem; color: var(--secondary); }
+        .tag { background: #e2e8f0; padding: 2px 8px; border-radius: 4px; font-family: monospace; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Dashboard Infrastructure</h1>
+            <span class="status-badge">LIVE : CI/CD ACTIVE</span>
+        </div>
+
+        <p>Ce service a été déployé automatiquement via <strong>GitHub Actions</strong> et <strong>Ansible</strong>.</p>
+
+        <div class="infra-grid">
+            <div class="node active">
+                <strong>DMZ</strong><br>
+                <small>Web Server</small><br>
+                <span class="tag">192.168.100.10</span>
+            </div>
+            <div class="arrow">⬅ SSH ➡</div>
+            <div class="node active">
+                <strong>BASTION</strong><br>
+                <small>Firewall (Runner)</small><br>
+                <span class="tag">Interface LAN/DMZ</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; padding: 15px; background: #eff6ff; border-radius: 8px; border-left: 4px solid var(--primary);">
+            <strong>Détails du déploiement :</strong>
+            <ul>
+                <li><strong>Orchestrateur :</strong> Ansible 2.17</li>
+                <li><strong>Pipeline :</strong> GitHub Actions (Self-hosted)</li>
+                <li><strong>Serveur Web :</strong> Nginx sur Ubuntu Jammy</li>
+                <li><strong>Base de données :</strong> MariaDB (Isolée dans le LAN)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        Projet de Virtualisation & Sécurité - Réalisé par <strong>Diao / Seckou</strong>
+    </div>
+
+</body>
+</html>
