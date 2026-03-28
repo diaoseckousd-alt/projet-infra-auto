@@ -11,6 +11,9 @@
       copy: { src: ./index.html, dest: /var/www/html/index.html }
       when: inventory_hostname in groups['web']
 
-    - name: Install MariaDB (DB)
-      apt: { name: mariadb-server, state: present }
+    - name: Install MariaDB sur DBserver
+      apt: 
+        name: mariadb-server 
+        state: present
+        update_cache: yes  # <--- AJOUTE CETTE LIGNE ICI
       when: inventory_hostname in groups['db']
