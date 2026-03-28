@@ -1,0 +1,16 @@
+---
+- name: Setup Infrastructure
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Nginx (Web)
+      apt: { name: nginx, state: present, update_cache: yes }
+      when: inventory_hostname in groups['web']
+
+    - name: Deploy Website
+      copy: { src: ./index.html, dest: /var/www/html/index.html }
+      when: inventory_hostname in groups['web']
+
+    - name: Install MariaDB (DB)
+      apt: { name: mariadb-server, state: present }
+      when: inventory_hostname in groups['db']
